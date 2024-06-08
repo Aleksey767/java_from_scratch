@@ -37,6 +37,11 @@ public class Ticket {
     public String getId() {
         return id;
     }
+
+    public char getStadiumSector() {
+        return stadiumSector;
+    }
+
     @Override
     // making output evener in terminal
     public String toString() {

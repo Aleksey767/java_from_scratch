@@ -2,6 +2,7 @@ package com.sazonau.lesson_3;
 
 import com.sazonau.lesson_2.Ticket;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 public class TicketService {
@@ -33,6 +34,12 @@ public class TicketService {
 
     public Ticket getTicketById(String id) {
         return tickets.get(id);
+    }
+
+    public List<Ticket> getTicketsByStadiumSector(char stadiumSector) {
+        return tickets.values().stream()
+                .filter(ticket -> ticket.getStadiumSector() == stadiumSector)
+                .toList();
     }
 
     public static void main(String[] args) {
