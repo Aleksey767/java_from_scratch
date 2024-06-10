@@ -5,7 +5,7 @@ public class TicketService {
     public static void main(String[] args) {
 
         Ticket emptyTicket = new Ticket();
-        Ticket fullTicket = new Ticket("1234", "MainHall", 123, 1717610803, true, 'B', 5.5);
+        Ticket fullTicket = new Ticket("1234", "MainHall", 123, 1111111112, true, 'B', 5.5);
         Ticket limitedTicket = new Ticket("SmallHall", 456, 1717610803);
 
         // Printing the tickets
