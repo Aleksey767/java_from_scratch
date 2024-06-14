@@ -1,3 +1,19 @@
+## Lesson #3
+<details>
+  <summary>You can open the slider to see all the information</summary>
+
+<img>![image](https://github.com/Aleksey767/java_from_scratch/assets/98593351/5df57128-ab35-4f05-a9fc-04434c17ea58)
+</img>
+
+<b>Results:</b>
+
+<b>https://github.com/Aleksey767/java_from_scratch/pull/3</b>
+<b>https://github.com/Aleksey767/java_from_scratch/pull/4</b>
+<b>https://github.com/Aleksey767/java_from_scratch/pull/6</b>
+
+
+</details>
+
 ## Lesson #2
 <details>
   <summary>You can open the slider to see all the information</summary>
