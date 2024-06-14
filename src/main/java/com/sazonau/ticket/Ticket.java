@@ -1,11 +1,16 @@
-package com.sazonau;
+package com.sazonau.ticket;
+
+import lombok.Getter;
 
 public class Ticket {
+    // Getters
+    @Getter
     private String id;
     private final String concertHall;
     private final int eventCode;
     private final long time;
     private boolean isPromo;
+    @Getter
     private char stadiumSector;
     private double maxAllowedBackpackWeight;
 
@@ -30,16 +35,7 @@ public class Ticket {
 
     // Default constructor for empty ticket
     public Ticket() {
-        this("", "", 0, 0, false, ' ', 0.0);
-    }
-
-    // Getters
-    public String getId() {
-        return id;
-    }
-
-    public char getStadiumSector() {
-        return stadiumSector;
+        this("null", "null", 0, 0, false, ' ', 0.0);
     }
 
     @Override
@@ -51,7 +47,7 @@ public class Ticket {
         String paddedPromo = String.format("%-5s", isPromo);
         String paddedEventCode = String.format("%-3s", eventCode);
 
-        return String.format("\t Ticket{id=%s, concertHall=%s, eventCode=%s, time=%s, isPromo=%s, stadiumSector=%s, maxAllowedBackpackWeight=%.1f}",
+        return String.format("\t ID - %s, Concert Hall - %s, Event code - %s, Time - %s, Promo - %s, Stadium Sector - %s, maxAllowedBackpackWeight - %.1f",
                 paddedId, paddedConcertHall, paddedEventCode, paddedTime, paddedPromo, stadiumSector, maxAllowedBackpackWeight);
     }
 
