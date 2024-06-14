@@ -1,11 +1,11 @@
 package com.sazonau.ticket;
 
+import com.sazonau.interfaces.Print;
 import lombok.Getter;
+import com.sazonau.overall.Entity;
 
-public class Ticket {
-    // Getters
-    @Getter
-    private String id;
+public class Ticket extends Entity implements Print {
+
     private final String concertHall;
     private final int eventCode;
     private final long time;
@@ -14,10 +14,9 @@ public class Ticket {
     private char stadiumSector;
     private double maxAllowedBackpackWeight;
 
-    // Constructor with all parameters initialized
-    public Ticket(String id, String concertHall, int eventCode, long time, boolean isPromo, char stadiumSector, double maxAllowedBackpackWeight) {
-
-        this.id = id;
+    // Constructor with all parameters
+    public Ticket(int id,String concertHall, int eventCode, long time, boolean isPromo, char stadiumSector, double maxAllowedBackpackWeight) {
+        super(id);
         this.concertHall = concertHall;
         this.eventCode = eventCode;
         this.time = time;
@@ -35,7 +34,17 @@ public class Ticket {
 
     // Default constructor for empty ticket
     public Ticket() {
-        this("null", "null", 0, 0, false, ' ', 0.0);
+        this.concertHall = "unknown";
+        this.eventCode = 0;
+        this.time = 0;
+        this.isPromo = false;
+        this.stadiumSector = '\u0000';
+        this.maxAllowedBackpackWeight = 0.0;
+    }
+
+    @Override
+    public void print() {
+        System.out.println(this);
     }
 
     @Override
@@ -47,7 +56,7 @@ public class Ticket {
         String paddedPromo = String.format("%-5s", isPromo);
         String paddedEventCode = String.format("%-3s", eventCode);
 
-        return String.format("\t ID - %s, Concert Hall - %s, Event code - %s, Time - %s, Promo - %s, Stadium Sector - %s, maxAllowedBackpackWeight - %.1f",
+        return String.format("\t| ID - %s| Concert Hall - %s| Event code - %s| Time - %s| Promo - %s| Stadium Sector - %s| maxAllowedBackpackWeight - %.1f |",
                 paddedId, paddedConcertHall, paddedEventCode, paddedTime, paddedPromo, stadiumSector, maxAllowedBackpackWeight);
     }
 
