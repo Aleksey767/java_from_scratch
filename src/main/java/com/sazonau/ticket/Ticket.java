@@ -8,15 +8,20 @@ public class Ticket extends Entity implements Print {
 
     private final String concertHall;
     private final int eventCode;
-    private final long time;
+    private long time;
     private boolean isPromo;
     @Getter
     private char stadiumSector;
     private double maxAllowedBackpackWeight;
 
     // Constructor with all parameters
-    public Ticket(int id,String concertHall, int eventCode, long time, boolean isPromo, char stadiumSector, double maxAllowedBackpackWeight) {
+    public Ticket(int id, String concertHall, int eventCode, long time, boolean isPromo, char stadiumSector, double maxAllowedBackpackWeight) {
         super(id);
+
+        checkId(id);
+        checkConcertHall(concertHall);
+        checkEventCode(eventCode);
+        checkStadiumSector(stadiumSector);
         this.concertHall = concertHall;
         this.eventCode = eventCode;
         this.time = time;
@@ -34,12 +39,40 @@ public class Ticket extends Entity implements Print {
 
     // Default constructor for empty ticket
     public Ticket() {
+        this.id = 0;
         this.concertHall = "unknown";
         this.eventCode = 0;
         this.time = 0;
         this.isPromo = false;
         this.stadiumSector = '\u0000';
         this.maxAllowedBackpackWeight = 0.0;
+    }
+
+    // Validators
+    private void checkStadiumSector(char sector) {
+        if (sector > 'C' || sector < 'A') throw new TicketException("Stadium sector must be 'A', 'B','C'");
+    }
+
+    private void checkConcertHall(String hall) {
+        if (hall.length() > 10) throw new TicketException("Concert hall title must contain no more than 10 chars");
+    }
+
+    private void checkEventCode(int code) {
+        if (code / 100 > 9 || code / 100 < 1) throw new TicketException("Event code must contain only 3 digits");
+    }
+
+    private void checkId(int id) {
+        if (id > 9999) throw new TicketException("Should be max 4 digits chars");
+    }
+
+    //Setters
+    public void setTime(long time) {
+        this.time = time;
+    }
+
+    public void setStadiumSector(char stadiumSector) {
+        checkStadiumSector(stadiumSector);
+        this.stadiumSector = stadiumSector;
     }
 
     @Override
