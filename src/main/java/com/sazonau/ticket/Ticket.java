@@ -1,10 +1,11 @@
 package com.sazonau.ticket;
 
 import com.sazonau.interfaces.Print;
+import com.sazonau.interfaces.Share;
 import lombok.Getter;
 import com.sazonau.overall.Entity;
 
-public class Ticket extends Entity implements Print {
+public class Ticket extends Entity implements Print, Share {
 
     private final String concertHall;
     private final int eventCode;
@@ -80,8 +81,19 @@ public class Ticket extends Entity implements Print {
         System.out.println(this);
     }
 
+    public void shareByPhone(String phoneNumber) {
+        System.out.printf("Ticket has been successfully shared to %s\n", phoneNumber);
+    }
+
+    public void shareByPhone(int phoneNumber) {
+        System.out.printf("Ticket has been successfully shared to %d\n", phoneNumber);
+    }
+
+    public void shareByEmail(String email) {
+        System.out.printf("Ticket has been successfully shared to %s\n", email);
+    }
+
     @Override
-    // making output evener in terminal
     public String toString() {
         String paddedId = String.format("%-4s", id);
         String paddedConcertHall = String.format("%-10s", concertHall);
