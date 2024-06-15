@@ -1,40 +1,36 @@
 package com.sazonau;
 
+import com.sazonau.overall.User;
 import com.sazonau.ticket.Ticket;
 import com.sazonau.ticket.TicketService;
-
-import java.util.List;
-
+import com.sazonau.users.Admin;
+import com.sazonau.users.Client;
 
 public class Main {
-    private static final String[] ids = {"03", "07", "10", "666"};
-    private static final TicketService service = new TicketService();
-    private final static char sector = 'B';
     public static void main(String[] args) {
+        // Example of custom annotation
+        TicketService firstTicket = new TicketService();
+        firstTicket.createTicket();
+        System.out.println(firstTicket.getById(0));
 
+
+        // Example of Polymorphism and Inheritance
         Ticket emptyTicket = new Ticket();
-        Ticket fullTicket = new Ticket("1234", "MainHall", 123, 1717610803, true, 'B', 5.5);
-        Ticket limitedTicket = new Ticket("SmallHall", 456, 1717610909);
+        emptyTicket.shareByEmail("rockstar@gmail.com");
+        emptyTicket.shareByPhone(777666555);
+        emptyTicket.shareByPhone("+48 777-666-555");
 
-        // Printing of tickets of 3 types
-        System.out.printf("%s%n %s%n %s%n", emptyTicket, fullTicket, limitedTicket);
+        User client = new Client(101);
+        User admin = new Admin(501);
 
-        // Printing tickets by ID
-        System.out.printf("\n Tickets which have ID: %s :\n", String.join(",", ids));
-        for (String id : ids) {
-            Ticket ticket = service.getTicketById(id);
-            if (ticket != null) {
-                System.out.println(ticket);
-            } else {
-                System.out.printf("\n Ticket with ID - %s were not found.%n\n", id);
-            }
-        }
+        Client client2 = new Client(101);
+        Admin admin2 = new Admin(501);
 
-        // Printing tickets by stadium sector
-        List<Ticket> ticketsBySector = service.getTicketsByStadiumSector(sector);
-        System.out.printf("\n Tickets in sector %s :\n", sector);
-        for (Ticket ticket : ticketsBySector) {
-            System.out.println(ticket);
-        }
+        client.printRole();
+        admin.printRole();
+
+        client2.getTicket();
+        admin2.checkTicket();
+
     }
 }

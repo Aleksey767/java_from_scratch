@@ -9,6 +9,6 @@ public abstract class User extends Entity {
     }
 
     public void printRole() {
-        System.out.printf("| ID - %d has role - %s |\n", id, role);
+        System.out.printf("\t| ID - %d has role - %s |\n", id, role);
     }
 }

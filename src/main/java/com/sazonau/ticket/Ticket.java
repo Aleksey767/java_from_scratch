@@ -1,5 +1,7 @@
 package com.sazonau.ticket;
 
+import com.sazonau.annotations.NullableWarning;
+import com.sazonau.annotations.NullableWarningDetector;
 import com.sazonau.interfaces.Print;
 import com.sazonau.interfaces.Share;
 import lombok.Getter;
@@ -8,7 +10,7 @@ import com.sazonau.overall.Entity;
 import java.util.Objects;
 
 public class Ticket extends Entity implements Print, Share {
-
+    @NullableWarning
     private final String concertHall;
     private final int eventCode;
     private long time;
@@ -31,6 +33,7 @@ public class Ticket extends Entity implements Print, Share {
         this.isPromo = isPromo;
         this.stadiumSector = stadiumSector;
         this.maxAllowedBackpackWeight = maxAllowedBackpackWeight;
+        NullableWarningDetector.detectNulls(this);
     }
 
     // Constructor with limited parameters
@@ -38,17 +41,19 @@ public class Ticket extends Entity implements Print, Share {
         this.concertHall = concertHall;
         this.eventCode = eventCode;
         this.time = time;
+        NullableWarningDetector.detectNulls(this);
     }
 
     // Default constructor for empty ticket
     public Ticket() {
         this.id = 0;
-        this.concertHall = "unknown";
+        this.concertHall = null;
         this.eventCode = 0;
         this.time = 0;
         this.isPromo = false;
         this.stadiumSector = '\u0000';
         this.maxAllowedBackpackWeight = 0.0;
+        NullableWarningDetector.detectNulls(this);
     }
 
     // Validators
