@@ -5,6 +5,8 @@ import com.sazonau.interfaces.Share;
 import lombok.Getter;
 import com.sazonau.overall.Entity;
 
+import java.util.Objects;
+
 public class Ticket extends Entity implements Print, Share {
 
     private final String concertHall;
@@ -103,6 +105,24 @@ public class Ticket extends Entity implements Print, Share {
 
         return String.format("\t| ID - %s| Concert Hall - %s| Event code - %s| Time - %s| Promo - %s| Stadium Sector - %s| maxAllowedBackpackWeight - %.1f |",
                 paddedId, paddedConcertHall, paddedEventCode, paddedTime, paddedPromo, stadiumSector, maxAllowedBackpackWeight);
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Ticket ticket = (Ticket) o;
+        return eventCode == ticket.eventCode &&
+                time == ticket.time &&
+                isPromo == ticket.isPromo &&
+                stadiumSector == ticket.stadiumSector &&
+                Double.compare(ticket.maxAllowedBackpackWeight, maxAllowedBackpackWeight) == 0 &&
+                Objects.equals(concertHall, ticket.concertHall);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(concertHall, eventCode, time, isPromo, stadiumSector, maxAllowedBackpackWeight);
     }
 
 
